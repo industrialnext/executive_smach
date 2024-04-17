@@ -230,7 +230,7 @@ class SimpleActionState(RosState):
                 if rclpy.ok():
                     self.node.get_logger().error("Failed to sleep while running '%s'" % self._action_name)
             if clock.now() - self._activate_time > self._exec_timeout:
-                self.node.get_logger().warn("Action %s timed out after %d seconds." % (self._action_name, self._exec_timeout.to_sec()))
+                self.node.get_logger().warn("Action %s timed out after %d seconds." % (self._action_name, self._exec_timeout.nanoseconds * 1e-9))
                 # Cancel the goal
                 self._action_client.cancel_goal()
 
