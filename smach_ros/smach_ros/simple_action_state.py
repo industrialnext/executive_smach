@@ -231,8 +231,8 @@ class SimpleActionState(RosState):
                     self.node.get_logger().error("Failed to sleep while running '%s'" % self._action_name)
             if clock.now() - self._activate_time > self._exec_timeout:
                 self.node.get_logger().warn("Action %s timed out after %d seconds." % (self._action_name, self._exec_timeout.nanoseconds * 1e-9))
-                # Cancel the goal
-                self._action_client.cancel_goal()
+                # TODO: Cancel the goal
+                # self._action_client.cancel_goal() 
 
     ### smach State API
     def request_preempt(self):
@@ -240,8 +240,8 @@ class SimpleActionState(RosState):
         RosState.request_preempt(self)
         if self._status == SimpleActionState.ACTIVE:
             self.node.get_logger().info("Preempt on action '%s' cancelling goal: \n%s" % (self._action_name, str(self._goal)))
-            # Cancel the goal
-            self._action_client.cancel_goal()
+            # TODO: Cancel the goal
+            # self._action_client.cancel_goal() 
 
     def execute(self, ud):
         """Called when executing a state.
